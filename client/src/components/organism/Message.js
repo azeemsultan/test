@@ -34,20 +34,21 @@ let Message = () => {
   let allChats = () =>{
     axios.get('http://localhost:5000/api/chats', {headers:{'Authorization':token}})
     .then((response)=>{
-      setAllChat(response.data.data.filter(t=> userId === t.user._id));
+      setAllChat(response.data.data.filter(t=> userId === t.user._id || t.vendor._id));
     })
     .catch((error)=>{
       console.log(error)
     })
   }
 
+  console.log(allChat,'all')
   let getChat = (id) =>{
     console.log('clicked')
     setInterval(()=>{
     setChatId(id);
     axios.get('http://localhost:5000/api/chats', {headers:{'Authorization':token}})
     .then((response)=>{
-      console.log('chat recieved',response.data.data.filter(t=> t.user._id === userId));
+      console.log('chat recieved',response.data.data.filter(t=> t.vendor._id === userId));
       let array = response.data.data.filter(t=> t._id === id)
       setChat(array[0].messages)
     })
@@ -58,6 +59,7 @@ let Message = () => {
 
   }
 
+  console.log(chat);
 
   let sendMessage = () =>{
     let obj = {
@@ -104,7 +106,7 @@ let Message = () => {
         <div onClick={()=>getChat(item._id)} style={{marginTop:10,display:'flex',borderBottom:'1px solid black'}}>
         <Avatar/>
         <div style={{marginLeft:20,marginTop:10,marginBottom:20}}>
-          {item?.vendor?.name}
+          {item?.vendor?.name} & {item?.user?.name}
           </div>
           <Divider/>
         </div>
@@ -123,7 +125,7 @@ let Message = () => {
             <div key={index}>
               <Typography 
                variant="h6" style={{marginTop:10,textAlign:`${info?.user?.name ? 'start':'right'}`}}>
-              {info?.user?.name ? 'You:': ''} <span style={{backgroundColor:`${info?.user?.name ? '#91c775': '#44adbd'}`,borderRadius:'33px',padding:5}}> {info?.text} </span> {info?.user?.name ? '': ':Seller'}
+              {info?.user?._id == userId ? 'You:': ''} <span style={{backgroundColor:`${info?.user?.name ? '#91c775': '#44adbd'}`,borderRadius:'33px',padding:5}}> {info?.text} </span> {info?.vendor?._id == userId ?':Seller' : '' }
               </Typography>
             </div>
           ))

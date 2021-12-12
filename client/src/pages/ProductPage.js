@@ -271,11 +271,11 @@ const ProductPage = () => {
   let messageNow = () => {
     let obj = {
       user: userId._id,
-      vendor: product?.vendor?._id,
+      vendor: product?.user?._id,
     };
     console.log(userId._id);
     let arr = allChat.filter(
-      (t) => product?.vendor?._id == t.vendor._id && userId._id == t.user._id
+      (t) => product?.user?._id == t.user._id && userId._id == t.user._id
     );
     if (arr.length > 0) {
       window.location.href = `/message/${arr[0]._id}`;
@@ -293,7 +293,7 @@ const ProductPage = () => {
         });
     }
   };
-  console.log("guys agaya", product?.vendor?._id);
+  console.log("guys agaya", product?.user?._id);
   console.log(allChat);
   return (
     <Grid container>
@@ -427,7 +427,7 @@ const ProductPage = () => {
                       style={{ color: "#3c568f", fontSize: "40px" }}
                     />
                     <Typography variant="h6">
-                      &nbsp; &nbsp; Seller: {product?.vendor?.name}
+                      &nbsp; &nbsp; Seller: {product?.user?.name}
                     </Typography>
                   </div>
                   <div
@@ -439,7 +439,7 @@ const ProductPage = () => {
                   >
                     <EmailIcon style={{ color: "#3c568f", fontSize: "40px" }} />
                     <Typography variant="h6">
-                      &nbsp; &nbsp; Email: {product?.vendor?.email}
+                      &nbsp; &nbsp; Email: {product?.user?.email}
                     </Typography>
                   </div>
                   <div
@@ -453,7 +453,7 @@ const ProductPage = () => {
                       style={{ color: "#3c568f", fontSize: "40px" }}
                     />
                     <Typography variant="h6">
-                      &nbsp; &nbsp; Delivery: {product?.vendor?.cardExpire}
+                      &nbsp; &nbsp; Delivery: {product?.user?.cardExpire}
                     </Typography>
                   </div>
                   <div
