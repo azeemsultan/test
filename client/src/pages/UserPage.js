@@ -173,9 +173,22 @@ React.useEffect(() => {
           >
             <MenuIcon />
           </IconButton>
-          <Typography variant="h6" noWrap component="div">
-            User Dashboard
+          <Typography style={{width:300}} variant="h6" noWrap component="div">
+          Dashboard
           </Typography>
+          <div style={{display:'flex',width:'100%',justifyContent:'flex-end',color:'white'}}>
+            <Button  style={{color:'white'}}  onClick={()=>{
+              window.location.href="/"
+            }}>
+              Home
+            </Button>
+            <Button style={{color:'white'}} onClick={()=>{
+              localStorage.clear();
+              window.location.href="/login"
+            }}>
+              Logout
+            </Button>
+          </div>
         </Toolbar>
       </AppBar>
       <Box

@@ -92,6 +92,12 @@ function AdminPage(props) {
 
   React.useEffect(()=>{
       getAdmin();
+      if(!admintoken)
+      {
+       (()=>{
+         window.location.href="/adminLogin"
+       })();
+      }
      
   },[])
 
@@ -657,6 +663,7 @@ console.log(collection);
 
   return (
     <Box sx={{ display: "flex" }}>
+    
       <CssBaseline />
       <AppBar
         position="fixed"
@@ -1061,7 +1068,7 @@ console.log(collection);
      ))}
    </TableBody>
  </Table>
-</TableContainer>
+</TableContainer> )
     </Box>
         )}
 

@@ -587,6 +587,8 @@ console.log(collection);
   };
 
 
+  console.log(products,'thissis')
+
   let savePicture = () =>{
     console.log('saving image')
     let obj = {
@@ -771,9 +773,22 @@ console.log(collection);
           >
             <MenuIcon />
           </IconButton>
-          <Typography variant="h6" noWrap component="div">
+          <Typography style={{width:500}} variant="h6" noWrap component="div">
             Vendor Dashboard
           </Typography>
+          <div style={{display:'flex',width:'100%',justifyContent:'flex-end',color:'white'}}>
+            <Button  style={{color:'white'}}  onClick={()=>{
+              localStorage.clear();
+              window.location.href="/"
+            }}>
+              Home
+            </Button>
+            <Button style={{color:'white'}} onClick={()=>{
+              window.location.href="/login"
+            }}>
+              Logout
+            </Button>
+          </div>
         </Toolbar>
       </AppBar>
       <Box

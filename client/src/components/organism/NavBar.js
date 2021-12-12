@@ -10,6 +10,7 @@ import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import InputBase from '@mui/material/InputBase';
 import Badge from '@mui/material/Badge';
 import MenuItem from '@mui/material/MenuItem';
+import LogoutIcon from '@mui/icons-material/Logout';
 import Menu from '@mui/material/Menu';
 import MenuIcon from '@mui/icons-material/Menu';
 import SearchIcon from '@mui/icons-material/Search';
@@ -186,6 +187,15 @@ export default function NavBar() {
             }} />
               </Badge>
             </IconButton>
+            <IconButton size="large" aria-label="show 4 new mails" color="inherit">
+              <Badge  color="error">
+                <LogoutIcon onClick={()=>{
+                  localStorage.clear();
+                window.location.href="/login"
+            }} />
+              </Badge>
+            </IconButton>
+    
     
            
           </Box>
